@@ -1,0 +1,38 @@
+{
+  "name": "favv",
+  "version": "1.0.0",
+  "description": "TCTTS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Krister-Johansson/favv.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Krister-Johansson/favv/issues"
+  },
+  "homepage": "https://github.com/Krister-Johansson/favv#readme",
+  "dependencies": {
+    "@google-cloud/text-to-speech": "^2.3.0",
+    "bad-words": "^3.0.3",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "cookie-session": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "node-fetch": "^2.6.0",
+    "nodemon": "^2.0.3",
+    "passport": "^0.4.1",
+    "passport-twitch": "^1.0.3",
+    "pavlok-beta-api-login": "^2.0.4",
+    "pug": "^2.0.4",
+    "socket.io": "^2.3.0",
+    "tmi.js": "^1.5.0",
+    "twitch-emoji": "^0.2.209"
+  }
+}
