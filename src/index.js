@@ -8,16 +8,16 @@ const twitchEmoji = require('twitch-emoji')
 
 const tmi = require('tmi.js');
 const twi = new tmi.Client({
-	options: { debug: true },
-	connection: {
-		reconnect: true,
-		secure: true
-	},
-	identity: {
-		username: 'sweLogan',
-		password: 'oauth:3qvruv26985erjhqn75brak16anvr2'
-	},
-	channels: [ 'sweLogan' ]
+    options: { debug: true },
+    connection: {
+        reconnect: true,
+        secure: true
+    },
+    identity: {
+        username: 'sweLogan',
+        password: 'oauth:3qvruv26985erjhqn75brak16anvr2'
+    },
+    channels: ['sweLogan']
 });
 
 twi.connect();
@@ -37,13 +37,13 @@ app.set('views', './src/views')
 app.set('view engine', 'pug')
 
 pavlok.init(process.env.PAVLOK_ID, process.env.PAVLOK_SECRET, {
-	'verbose': true,
-	'app' : app,
-	'message': 'Hello from the Pavlok Remote example!',
-	'callbackUrl': 'https://77719802.ngrok.io/auth/pavlok/result',
-	'callbackUrlPath': '/auth/pavlok/result',
-	'successUrl': '/',
-	'errorUrl': '/error'
+    'verbose': true,
+    'app': app,
+    'message': 'Hello from the Pavlok Remote example!',
+    'callbackUrl': 'https://77719802.ngrok.io/auth/pavlok/result',
+    'callbackUrlPath': '/auth/pavlok/result',
+    'successUrl': '/',
+    'errorUrl': '/error'
 });
 
 let user = null;
@@ -78,51 +78,51 @@ const generatefollowssml = (name) => {
 }
 
 app.get('/', (req, res) => {
-    res.render('index')
+    res.render('index', { token: process.env.STREAMLAB_TOKEN })
 })
 
-app.get('/auth', (req, res ) =>{
-	pavlok.auth(req, res);
+app.get('/auth', (req, res) => {
+    pavlok.auth(req, res);
 });
 
-app.get('/zap', (req, res ) =>{
-	pavlok.zap({
+app.get('/zap', (req, res) => {
+    pavlok.zap({
         'request': req,
-        value:80
-	});
-	console.log('Zapped!');
-	res.sendStatus(200)
+        value: 80
+    });
+    console.log('Zapped!');
+    res.sendStatus(200)
 });
 
-app.get('/vibrate', (req, res ) =>{
-	pavlok.vibrate({
+app.get('/vibrate', (req, res) => {
+    pavlok.vibrate({
         'request': req,
-        value:255
-	});
-	console.log('Vibrated!');
-	res.sendStatus(200)
+        value: 255
+    });
+    console.log('Vibrated!');
+    res.sendStatus(200)
 });
 
-app.get('/beep', (req, res ) =>{
-	pavlok.beep({
-		'request': req
-	});
-	console.log('Beeped!');
-	res.sendStatus(200)
+app.get('/beep', (req, res) => {
+    pavlok.beep({
+        'request': req
+    });
+    console.log('Beeped!');
+    res.sendStatus(200)
 });
 
-app.get('/pattern', (req, res ) =>{
-	pavlok.pattern({
-		'request': req,
-		'pattern': [ 'beep', 'vibrate', 'beep' ],
-		'count': 2
-	});
-	res.sendStatus(200)
+app.get('/pattern', (req, res) => {
+    pavlok.pattern({
+        'request': req,
+        'pattern': ['beep', 'vibrate', 'beep'],
+        'count': 2
+    });
+    res.sendStatus(200)
 });
 
-app.get('/logout', (req, res ) =>{
-	pavlok.logout(req);
-	result.redirect('/');	
+app.get('/logout', (req, res) => {
+    pavlok.logout(req);
+    result.redirect('/');
 });
 
 app.get('/tts', (req, res) => {
@@ -159,14 +159,14 @@ app.get('/follow', (req, res) => {
 
 io.on('connection', function (socket) {
     twi.on('message', (channel, tags, message, self) => {
-        
-        if(message.toLowerCase().startsWith('!tip')) {
+
+        if (message.toLowerCase().startsWith('!tip')) {
             twi.say("swelogan", `${tags['display-name']} -> https://streamlabs.com/swelogan/tip`);
         }
 
-        if(message.toLowerCase().startsWith('!say')) {
+        if (message.toLowerCase().startsWith('!say')) {
             const text = message.replace('!say', '')
-            const renderText =  twitchEmoji.parse( text , { emojiSize : 'medium' })
+            const renderText = twitchEmoji.parse(text, { emojiSize: 'medium' })
             socket.emit('play', {
                 text,
                 type: 'tts',
@@ -176,7 +176,7 @@ io.on('connection', function (socket) {
                 badges: tags.badges
             });
         }
-        if(message.toLowerCase().startsWith('!play')) {
+        if (message.toLowerCase().startsWith('!play')) {
             const nr = message.replace('!play', '')
             socket.emit('play', {
                 nr: nr.trim(),

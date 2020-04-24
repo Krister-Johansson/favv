@@ -12,8 +12,8 @@ html(lang="en")
         script(src='/socket.io/socket.io.js')
         script.
             var events = []
-            const socketToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ0b2tlbiI6IjdGNzg3QjM4RjJCNDk2MjczRjA5IiwicmVhZF9vbmx5Ijp0cnVlLCJwcmV2ZW50X21hc3RlciI6dHJ1ZSwidHdpdGNoX2lkIjoiNzg5MTY0NDkiLCJmYWNlYm9va19pZCI6IjEwMTU5MDEyMzMyMDc5NDYwIn0.5qimbA8zs9xl7x0j2IDOEXit9mR4PKwogGfFnpHMdtc'
-            var socket = io('//77719802.ngrok.io');
+            const socketToken = '!{token}'
+            var socket = io(window.location.origin);
 
             var next = () =>{
                 setTimeout(()=>{
